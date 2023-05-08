@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather forecast</title>
+    <link type="text/css" href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="video-background">
+        {% if weather == 'rain' %}
+            <video src="{{ url_for('static', filename='video_backgrounds/rain.mp4') }}" autoplay loop muted></video>
+        {% elif  weather == 'clouds'%}
+            <video src="{{ url_for('static', filename='video_backgrounds/clouds.mp4') }}" autoplay loop muted></video>
+        {% elif  weather == 'storm'%}
+            <video src="{{ url_for('static', filename='video_backgrounds/storm.mp4') }}" autoplay loop muted></video>
+        {% elif  weather == 'sunny'%}
+            <video src="{{ url_for('static', filename='video_backgrounds/sunny.mp4') }}" autoplay loop muted></video>
+        {% elif  weather == 'sunny_clouds'%}
+            <video src="{{ url_for('static', filename='video_backgrounds/sunny_clouds.mp4') }}" autoplay loop muted></video>
+        {% elif  weather == 'snow'%}
+            <video src="{{ url_for('static', filename='video_backgrounds/snow.mp4') }}" autoplay loop muted></video>
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="content">
+            <h1>{{ city }}  {{ icon }} {{ temp }}℃</h1>
+            <h3>Сегодня</h3>
+            {% for e in today %}   
+                <li>{{e}}</li>
+            {% endfor %}
+            <h3>Прогноз на неделю</h3>
+            {% for e in week %}   
+                <li>{{e}}</li>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
